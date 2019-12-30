@@ -21,3 +21,12 @@ class ProductPage(BasePage):
         actual = self.browser.find_elements(*ProductPageLocators.MESSAGES)[2].text
         expected = self.browser.find_element(*ProductPageLocators.PRODUCT_PRICE).text
         assert actual == expected, f"Price in the message is wrong. Expected: {expected}, but actual: {actual}."
+
+    def should_not_be_success_message(self):
+        assert self.is_not_element_present(*ProductPageLocators.MESSAGES), \
+            "Success message is presented, but should not be"
+
+    def should_message_disappeared(self):
+        assert self.is_disappeared(*ProductPageLocators.MESSAGES), \
+            "Success message should be disappeared"
+
